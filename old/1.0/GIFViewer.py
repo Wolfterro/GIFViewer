@@ -24,31 +24,16 @@
 * SOFTWARE.
 '''
 
-#===================================
-# Criado por: Wolfterro
-# Versão: 1.1 - Python 2.x
-# Data: 12/07/2016
-#===================================
-
 from PyQt4 import QtCore, QtGui
 from os.path import expanduser, isfile
 import sys
 import os
 import struct
 
-# Definindo a codificação padrão para UTF-8.
-# ==========================================
-reload(sys)
-sys.setdefaultencoding('latin-1')
-
-# Definindo Versão do Programa, a pasta 'home' do usuário e o diretório do programa.
-# ==================================================================================
-version = "1.1"
+version = "1.0"
 home_dir = expanduser("~")
 program_dir = os.environ["ProgramFiles"] + "\\GIFViewer\\"
 
-# Codificação do programa.
-# ========================
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
 except AttributeError:
@@ -63,8 +48,6 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-# Classe principal do Programa gerada pelo Qt Designer.
-# =====================================================
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         global imageIndex
@@ -144,7 +127,7 @@ class Ui_MainWindow(object):
             return
         else:
             self.nextIndex = self.imageIndex + 1
-            if self.nextIndex == len(self.gifsInDir):
+            if self.nextIndex > len(self.gifsInDir):
                 return
             else:
                 self.getNextImage = self.gifsInDir[self.nextIndex]
@@ -154,7 +137,7 @@ class Ui_MainWindow(object):
                 self.imageIndex = self.gifsInDir.index(self.getNextImage)
                 self.width, self.height = self.getFileResolution(self.getNextImagePath)
 
-                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, unicode(self.getNextImagePath)), None))
+                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, str(self.getNextImagePath)), None))
                 QtGui.QApplication.processEvents()
 
                 MainWindow.resize(int(self.width), int(self.height))
@@ -181,7 +164,7 @@ class Ui_MainWindow(object):
                 self.imageIndex = self.gifsInDir.index(self.getPreviousImage)
                 self.width, self.height = self.getFileResolution(self.getPreviousImagePath)
 
-                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, unicode(self.getPreviousImagePath)), None))
+                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, str(self.getPreviousImagePath)), None))
                 QtGui.QApplication.processEvents()
 
                 MainWindow.resize(int(self.width), int(self.height))
@@ -194,7 +177,7 @@ class Ui_MainWindow(object):
     # Método de Resgate de Resolução do Arquivo GIF
     # =============================================
     def getFileResolution(self, fnamePath):
-        self.imgSize = os.path.getsize(unicode(self.fnamePath))
+        self.imgSize = os.path.getsize(str(self.fnamePath))
 
         with open(self.fnamePath) as self.input:
             self.height = -1
@@ -221,7 +204,7 @@ class Ui_MainWindow(object):
         os.chdir(self.fnameAbsPath)
         
         for self.files in os.listdir(self.fnameAbsPath):
-            if isfile(unicode(self.files)) == True:
+            if isfile(str(self.files)) == True:
                 if self.files.endswith(".gif"):
                     self.gifs.append(self.files)
         
@@ -231,11 +214,11 @@ class Ui_MainWindow(object):
     # ======================================================
     def openImageAssociate(self):
         try:
-            if unicode(sys.argv[1]) != None:
-                self.fnamePath = os.path.realpath(unicode(sys.argv[1]))
-                self.fnameRealName = os.path.basename(unicode(self.fnamePath))
+            if str(sys.argv[1]) != None:
+                self.fnamePath = os.path.realpath(str(sys.argv[1]))
+                self.fnameRealName = os.path.basename(self.fnamePath)
 
-                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, unicode(self.fnamePath).replace("/", "\\")), None))
+                MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, str(self.fnamePath).replace("/", "\\")), None))
                 QtGui.QApplication.processEvents()
 
                 self.width, self.height = self.getFileResolution(self.fnamePath)
@@ -257,11 +240,11 @@ class Ui_MainWindow(object):
         global imageIndex
 
         self.fname = QtGui.QFileDialog.getOpenFileName(MainWindow, 'Abrir Imagem...', home_dir, "Arquivo GIF (*.gif)")
-        self.fnamePath = unicode(self.fname).replace("/", "\\")
+        self.fnamePath = str(self.fname).replace("/", "\\")
         self.fnameRealName = os.path.basename(self.fnamePath)
         
-        if unicode(self.fnamePath) != "":
-            MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, unicode(self.fnamePath)), None))
+        if str(self.fnamePath) != "":
+            MainWindow.setWindowTitle(_translate("MainWindow", "GIFViewer - v%s - %s" % (version, str(self.fnamePath)), None))
             QtGui.QApplication.processEvents()
 
         self.width, self.height = self.getFileResolution(self.fnamePath)
@@ -287,8 +270,6 @@ class Ui_MainWindow(object):
     def exitprogram(self):
         sys.exit(0)
 
-# Executando o Programa.
-# ======================
 if __name__ == "__main__":
     import sys
     app = QtGui.QApplication(sys.argv)
@@ -297,3 +278,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

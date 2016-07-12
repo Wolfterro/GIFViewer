@@ -1,0 +1,19 @@
+GIFViewer
+=========
+
+Programa em PyQt4 para Windows que reproduz imagens em formato GIF!
+-------------------------------------------------------------------
+
+CHANGELOG:
+==========
+
+VERSÃO 1.1:
+- Alterada a codificação do programa.
+--- O programa irá utilizar a codificação 'latin-1' para que tenha compatibilidade na hora de abrir imagens com acentos no nome.
+
+#-------------------------------------------------------------------------------------------------------------------
+
+VERSÃO 1.0:
+- Versão inicial do programa.
+
+#-------------------------------------------------------------------------------------------------------------------
