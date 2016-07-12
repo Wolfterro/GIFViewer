@@ -36,8 +36,8 @@ import sys
 import os
 import struct
 
-# Definindo a codificação padrão para UTF-8.
-# ==========================================
+# Definindo a codificação padrão para Latin-1.
+# ============================================
 reload(sys)
 sys.setdefaultencoding('latin-1')
 
