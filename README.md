@@ -9,6 +9,8 @@
 
 ###### O programa possui funcionalidades simples ao reproduzir imagens GIF, podendo abrir imagens através do Menu principal do programa, limpar a imagem que está sendo reproduzida e avançar/retroceder imagens que estejam na pasta.
 
+### [Verifique o CHANGELOG para maiores informações sobre novas versões](https://raw.github.com/Wolfterro/GIFViewer/master/CHANGELOG.txt)
+
 ### Requisitos:
 
 #### Compilando:
@@ -26,5 +28,5 @@
 
 ### Download:
 
-#### ***Binário (instalador):*** https://github.com/Wolfterro/GIFViewer/releases/tag/v1.0
+#### ***Binário (instalador):*** https://github.com/Wolfterro/GIFViewer/releases/tag/v1.1
 #### ***Código-fonte:*** https://github.com/Wolfterro/GIFViewer/archive/master.zip
