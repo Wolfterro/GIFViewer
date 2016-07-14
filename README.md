@@ -28,5 +28,5 @@
 
 ### Download:
 
-#### ***Binário (instalador):*** https://github.com/Wolfterro/GIFViewer/releases/tag/v1.1
+#### ***Binário (instalador):*** https://github.com/Wolfterro/GIFViewer/releases/tag/v1.2
 #### ***Código-fonte:*** https://github.com/Wolfterro/GIFViewer/archive/master.zip
