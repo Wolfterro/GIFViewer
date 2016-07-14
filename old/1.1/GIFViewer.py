@@ -26,15 +26,14 @@
 
 #===================================
 # Criado por: Wolfterro
-# Versão: 1.2 - Python 2.x
-# Data: 14/07/2016
+# Versão: 1.1 - Python 2.x
+# Data: 12/07/2016
 #===================================
 
 from PyQt4 import QtCore, QtGui
 from os.path import expanduser, isfile
 import sys
 import os
-import ctypes
 import struct
 
 # Definindo a codificação padrão para Latin-1.
@@ -44,11 +43,8 @@ sys.setdefaultencoding('latin-1')
 
 # Definindo Versão do Programa, a pasta 'home' do usuário e o diretório do programa.
 # ==================================================================================
-buf = ctypes.create_unicode_buffer(1024)
-ctypes.windll.kernel32.GetEnvironmentVariableW(u"USERPROFILE", buf, 1024)
-home_dir = buf.value
-
-version = "1.2"
+version = "1.1"
+home_dir = expanduser("~")
 program_dir = os.environ["ProgramFiles"] + "\\GIFViewer\\"
 
 # Codificação do programa.
